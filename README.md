@@ -2,7 +2,7 @@
 
 ![grove-kit](.github/assets/header.png)
 
-# grove-kit
+# Welcome To The Grove
 
 *Like a grove where carefully tended trees grow in harmony, grove-kit cultivates a collection of thoughtfully crafted components. Each one nurtured, tested, and ready to flourish in your Next.js garden. Plant them with a single command, watch them bloom.*
 
