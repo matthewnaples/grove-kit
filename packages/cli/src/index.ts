@@ -18,6 +18,7 @@ program
   .argument('[components...]', 'Component names to add')
   .option('-p, --path <path>', 'Custom installation path')
   .option('-y, --yes', 'Skip confirmation prompts')
+  .option('-o, --overwrite', 'Overwrite existing files')
   .action(add);
 
 program

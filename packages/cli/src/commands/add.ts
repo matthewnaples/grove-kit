@@ -10,6 +10,7 @@ const REGISTRY_BASE_URL = 'https://raw.githubusercontent.com/matthewnaples/the-g
 interface AddOptions {
   path?: string;
   yes?: boolean;
+  overwrite?: boolean;
 }
 
 export async function add(components: string[], options: AddOptions) {
@@ -67,6 +68,9 @@ export async function add(components: string[], options: AddOptions) {
 
       if (options.yes) {
         args.push('--yes');
+      }
+      if (options.overwrite) {
+        args.push('--overwrite');
       }
       if (options.path) {
         args.push('--path', options.path);
