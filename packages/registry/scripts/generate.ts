@@ -45,7 +45,8 @@ async function generateRegistry() {
       dependencies: npmDeps,
       files: [
         {
-          path: getRelativePath(file),
+          path: `components/ui/${componentName}.tsx`,
+          content: content,
           type: 'registry:ui',
         },
       ],
