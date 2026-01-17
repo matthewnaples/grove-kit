@@ -17,3 +17,10 @@ export interface RegistryEntry {
   devDependencies?: string[];
   files: RegistryFile[];
 }
+
+export interface Registry {
+  $schema: string;
+  name: string;
+  homepage: string;
+  items: RegistryEntry[];
+}

@@ -1,13 +1,5 @@
 [
   {
-    "name": "loading-spinner",
-    "title": "Loading Spinner",
-    "description": "",
-    "tags": [],
-    "dependencies": [],
-    "registryDependencies": []
-  },
-  {
     "name": "async-button",
     "title": "Async Button",
     "description": "",
@@ -18,5 +10,13 @@
     "registryDependencies": [
       "button"
     ]
+  },
+  {
+    "name": "loading-spinner",
+    "title": "Loading Spinner",
+    "description": "",
+    "tags": [],
+    "dependencies": [],
+    "registryDependencies": []
   }
 ]

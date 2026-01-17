@@ -3,7 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import { glob } from 'glob';
-import type { RegistryEntry, RegistryFile } from './types.js';
+import type { RegistryEntry, RegistryFile, Registry } from './types.js';
 import { extractImports, getComponentCategory, getRelativePath } from './utils.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -29,6 +29,9 @@ async function generateRegistry() {
     clerk: [],
     'convex-clerk': [],
   };
+
+  // Track all registry entries for top-level index
+  const allRegistryEntries: RegistryEntry[] = [];
 
   // Find all component files
   const componentFiles = await glob('**/*.tsx', {
@@ -77,6 +80,9 @@ async function generateRegistry() {
 
     console.log(`✓ Generated registry/${category}/${componentName}.json`);
 
+    // Add to all entries array
+    allRegistryEntries.push(registryEntry);
+
     // Add to category index (without file content to keep index small)
     componentsByCategory[category].push({
       name: componentName,
@@ -96,6 +102,19 @@ async function generateRegistry() {
     await fs.writeJson(indexPath, components, { spaces: 2 });
     console.log(`✓ Generated registry/${category}/index.json (${components.length} components)`);
   }
+
+  // Generate top-level registry index
+  console.log('');
+  const registry: Registry = {
+    $schema: 'https://ui.shadcn.com/schema/registry.json',
+    name: 'the-grove',
+    homepage: 'https://github.com/matthewnaples/the-grove',
+    items: allRegistryEntries,
+  };
+
+  const registryIndexPath = path.join(REGISTRY_DIR, 'index.json');
+  await fs.writeJson(registryIndexPath, registry, { spaces: 2 });
+  console.log(`✓ Generated registry/index.json (${allRegistryEntries.length} total components)`);
 
   console.log('\n✅ Registry generation complete!');
 }
